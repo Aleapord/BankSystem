@@ -1,6 +1,7 @@
 package BankSystem2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,22 +35,19 @@ public class BankEntity {
                 "3.转账" + "\n" +
                 "4.贷款给个人"+"\n"+
                 "5.贷款给银行"+"\n"+
-                "6.退出登陆" + "\n" +
-                "7.查询账户信息" +"\n" +
+                "6.查询账户信息" + "\n" +
+                "7.退出登陆" +"\n" +
                 "8.退出");
     }
     private static Account findAccountById(int id, List<Account> accounts) {
-        Account account = null;
-        for (Account acc :
-                accounts) {
-            if (acc.equals(new Account("", id, 0))) {
-                account = acc;
+        Iterator<Account> iterator=accounts.iterator();
+        while (iterator.hasNext()){
+            Account acc=iterator.next();
+            if(acc.id==id){
+                return acc;
             }
         }
-        if (account == null)
-            System.out.println("查无此人！");
-        return account;
-
+        return null;
     }
     private static void operationsForVipAccount(){
 
@@ -89,6 +87,7 @@ public class BankEntity {
                 case 4: {
                     System.out.println("感谢使用，再见！");
                     exitFlag=false;
+                    System.exit(0);
                 }
                 case 5: {
                     currentAccount.showDital();
@@ -166,6 +165,7 @@ public class BankEntity {
             }
             case 8:{
                 System.out.println("感谢使用，再见！");
+                System.exit(0);
                 exitFlag=false;
             }
 
@@ -178,7 +178,7 @@ public class BankEntity {
         accounts.add(new Account("熊一睿", 3, 10000));
         accounts.add(new Account("王翔茂", 4, 20000));
         Scanner scanner=new Scanner(System.in);
-        Account currentAccount = new Account(" ",0,0);
+        currentAccount = new Account(" ",0,0);
         while (exitFlag) {
             mainMenu();
             switch (scanner.nextInt()) {
@@ -194,14 +194,13 @@ public class BankEntity {
                 }
                 case 3:{
                     exitFlag=false;
+                    System.exit(0);
                 }
             }
             loginFlag = true;
             while (loginFlag){
-                if(currentAccount.getClass().toString().equals("BankSystem2.Account.VIPAccount")) {
+                if(currentAccount.getClass().toString().equals("class BankSystem2.Account")) {
                     operationsForVipAccount();
-
-
                 }
                 else {
                     operationsForBusinessAccount();
