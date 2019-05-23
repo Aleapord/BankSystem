@@ -173,10 +173,10 @@ public class BankEntity {
 
     }
     public static void main(String... args) {
-        accounts.add(new Account("曾庶强", 1, 100000));
-        accounts.add(new Account("晏庆明", 2, 1000));
-        accounts.add(new Account("熊一睿", 3, 10000));
-        accounts.add(new Account("王翔茂", 4, 20000));
+        accounts.add(new VIPAccount("曾庶强", 1, 100000));
+        accounts.add(new BusinessAccount("晏庆明", 2, 1000));
+        accounts.add(new VIPAccount("熊一睿", 3, 10000));
+        accounts.add(new BusinessAccount("王翔茂", 4, 20000));
         Scanner scanner=new Scanner(System.in);
         currentAccount = new Account(" ",0,0);
         while (exitFlag) {
