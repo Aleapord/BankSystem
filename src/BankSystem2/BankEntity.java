@@ -40,10 +40,9 @@ public class BankEntity {
                 "8.退出");
     }
     private static Account findAccountById(int id, List<Account> accounts) {
-        Iterator<Account> iterator=accounts.iterator();
-        while (iterator.hasNext()){
-            Account acc=iterator.next();
-            if(acc.id==id){
+        for (Account acc:accounts
+             ) {
+            if (acc.id==id){
                 return acc;
             }
         }
